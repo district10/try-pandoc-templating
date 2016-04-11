@@ -50,5 +50,13 @@ $code2$
 $endif$
 
 </code>
+
+$if(picture)$
+![]($picture$)
+$endif$
+
+$if(items)$
+items are: $for(items)$$items$$sep$; $endfor$
+$endif$
 </body>
 </html>

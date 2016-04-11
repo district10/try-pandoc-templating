@@ -2,6 +2,8 @@ YMLS := $(wildcard *.yml)
 TMPL := template.html
 
 all: index.html
+gh:
+	git add -A; git commit -m "`date `- `uname` $(CMTMSG)"; git push;
 
 index.html: $(YMLS) $(TMPL)
 index.html: index.md
