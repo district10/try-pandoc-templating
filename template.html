@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style> code { white-space: pre; } </style>
+$if(highlighting-css)$
+<style type="text/css">
+$highlighting-css$
+</style>
+$endif$
+</head>
+<body>
+$body$
+<code>
+$if(files)$
+files are:
+
+$for(files)$
+  - $files$
+$endfor$
+
+$endif$
+$if(apples)$
+apple has these products:
+
+$for(apples)$
+  - model: $apples.model$, price: $apples.price$
+$endfor$
+
+$endif$
+$if(foo)$
+$if(foo.bar)$
+$if(foo.bar.baz)$
+foo.bar.baz: $foo.bar.baz$
+$endif$
+$endif$
+
+$endif$
+$if(code)$
+some code:
+```c
+$code$
+```
+
+$endif$
+$if(code2)$
+some code2:
+$code2$
+
+$endif$
+
+</code>
+</body>
+</html>
