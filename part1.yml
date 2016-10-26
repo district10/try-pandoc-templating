@@ -1,5 +1,47 @@
 ---
+key: 【我是 key 的值】
+
 files:
-    - file1.txt
-    - file2.txt
-...
+  - file1.txt
+  - file2.txt
+  - file3.txt
+
+parent:
+    son:
+      - name: tom
+        interest: 吃大餐
+      - name: jack
+        interest: 睡大觉
+      - name: NoInterestSon
+    daughter:
+      - name: jersy
+        interest: 打豆豆
+      - name: sheay
+        interest: 吃豆豆
+
+picture: |
+    data:image/png;base64,R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLCAgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=
+
+verbatium: |
+    1   2   3   4   5
+    a   b   c   d   e
+
+code: |
+    ```c
+    // 这部分 markdown 会被提前解析成 html，然后插入。
+    #include <stdio.h>
+
+    int main( int argc, char **argv)
+    {
+        int a = atoi( argv[1] );
+        int b = atoi( argv[2] );
+        printf( "a + b = %d + %d = %d\n", a, b, a+b );
+        return 0;
+    }
+    ```
+title2: 这是 yml 文件里的 title
+jscode:
+    <script>
+    document.write("A JavaScript code.");
+    </script>
+---

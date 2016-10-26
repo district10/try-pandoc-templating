@@ -6,13 +6,16 @@ gh:
 	git add -A; git commit -m "`date `- `uname` $(CMTMSG)"; git push;
 
 index.html: $(YMLS) $(TMPL)
-index.html: index.md
+index.html: index.md index2.md part3.md
 	pandoc \
 		--highlight-style pygments \
 		--template template.html \
-		part1.yml part2.yml \
+		part1.yml \
+		part2.yml part3.md \
 		-f markdown \
-		$< \
+		index2.md \
+		index.md \
+		part1.yml \
 		-o $@
 
 clean:

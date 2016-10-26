@@ -10,53 +10,74 @@ $highlighting-css$
 $endif$
 </head>
 <body>
-$body$
 <code>
+【下面是测试。我把缩进调整了，便于查看，实践中通常都不这样使用。】
+
+0. 键值对：
+
+$if(key)$
+key 的值是（$key$）。
+$endif$
+
+1. 列表以及 sep 字段：
+
 $if(files)$
-files are:
-
-$for(files)$
-  - $files$
-$endfor$
-
-$endif$
-$if(apples)$
-apple has these products:
-
-$for(apples)$
-  - model: $apples.model$, price: $apples.price$
-$endfor$
-
-$endif$
-$if(foo)$
-$if(foo.bar)$
-$if(foo.bar.baz)$
-foo.bar.baz: $foo.bar.baz$
-$endif$
+用空行和空格分隔的列表：
+    [
+        $for(files)$
+            $files$$sep$,
+        $endfor$
+    ]，
+用“|”分隔的列表：[$for(files)$$files$$sep$|$endfor$]。
 $endif$
 
+2. 嵌套：
+
+$if(parent)$
+    $if(parent.son)$
+        他有几个男孩：
+        $for(parent.son)$
+            $if(parent.son.name)$他叫 $parent.son.name$$endif$$if(parent.son.interest)$（他的兴趣是 $parent.son.interest$）$else$（他没有啥兴趣）$endif$$sep$, and
+        $endfor$
+    $endif$
+
+    $if(parent.daughter)$
+        他还有几个女孩：
+        $for(parent.daughter)$
+            $parent.daughter.name$$sep$，以及
+        $endfor$
+    $endif$
 $endif$
+
+3. YAML 的代码块，会被当成 markdown 源码块，解析成 html，然后插入：（所以这是 1~5,a~e 的一个 p 标签）
+
+$if(verbatium)$
+$verbatium$
+$endif$
+
+所以，要插入代码的话，在 yaml 里面加上 ``` 符号，于是就有：
+
 $if(code)$
-some code:
-```c
 $code$
-```
-
 $endif$
-$if(code2)$
-some code2:
-$code2$
 
+4. 覆盖问题
+
+$if(title)$
+标题是：【$title$】
+$endif$
+
+覆盖策略似乎是 yml 中的配置内容，拥有最高权限。md 中的配置，先到先成功。
+
+5. 脚本注入
+
+$if(jscode)$
+$jscode$
 $endif$
 
 </code>
-
-$if(picture)$
-![]($picture$)
-$endif$
-
-$if(items)$
-items are: $for(items)$$items$$sep$; $endfor$
-$endif$
+最后，markdown 本体里的内容：【【【
+$body$
+】】】
 </body>
 </html>

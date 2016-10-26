@@ -42,28 +42,39 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </style>
 </head>
 <body>
-<p><code>file{1..6}.txt</code></p>
 <code>
-files are:
+【下面是测试。我把缩进调整了，便于查看，实践中通常都不这样使用。】
 
-  - file1.txt
-  - file2.txt
+0. 键值对：
 
-apple has these products:
+key 的值是（【我是 key 的值】）。
 
-  - model: mini2, price: 1234
-  - model: mini3, price: 5678
+1. 列表以及 sep 字段：
 
-foo.bar.baz: foobarbaz
+用空行和空格分隔的列表：
+    [
+                    file1.txt,
+                    file2.txt,
+                    file3.txt    ]，
+用“|”分隔的列表：[file1.txt|file2.txt|file3.txt]。
 
-some code:
-```c
-<h1 id="include">include <stdio.h></h1>
-<p>int main( int argc, char **argv) { int a = atoi( argv[1] ); int b = atoi( argv[2] ); printf( &quot;a + b = %d + %d = %d&quot;, a, b, a+b ); return 0; }</p>
-```
+2. 嵌套：
 
-some code2:
-<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;stdio.h&gt;</span>
+            他有几个男孩：
+                    他叫 tom（他的兴趣是 吃大餐）, and
+                    他叫 jack（他的兴趣是 睡大觉）, and
+                    他叫 NoInterestSon（他没有啥兴趣）    
+            他还有几个女孩：
+                    jersy，以及
+                    sheay    
+3. YAML 的代码块，会被当成 markdown 源码块，解析成 html，然后插入：（所以这是 1~5,a~e 的一个 p 标签）
+
+<p>1 2 3 4 5 a b c d e</p>
+
+所以，要插入代码的话，在 yaml 里面加上 ``` 符号，于是就有：
+
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="co">// 这部分 markdown 会被提前解析成 html，然后插入。</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
 
 <span class="dt">int</span> main( <span class="dt">int</span> argc, <span class="dt">char</span> **argv)
 {
@@ -73,11 +84,30 @@ some code2:
     <span class="kw">return</span> <span class="dv">0</span>;
 }</code></pre></div>
 
+4. 覆盖问题
+
+标题是：【这是 md 文件里的 title（index2）】
+
+覆盖策略似乎是 yml 中的配置内容，拥有最高权限。md 中的配置，先到先成功。
+
+5. 脚本注入
+
+<script> document.write("A JavaScript code."); </script>
 
 </code>
-
-![](<p>R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5 OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+ +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=</p>)
-
-items are: one; two; three
+最后，markdown 本体里的内容：【【【
+<p>picture: !!binary | R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5 OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/+ +f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLC AgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=</p>
+<pre><code>这是个 yml 文件，但是没有加上“---”所以被当成普通的 md 文本。
+内容会被加到 $body$ 里。</code></pre>
+<p>（index2 的内容。）</p>
+<p><code>file{1..6}.txt</code></p>
+<p>body parts in index.md</p>
+<ul>
+<li>part1</li>
+<li>part2</li>
+<li>part3</li>
+<li>part4</li>
+</ul>
+】】】
 </body>
 </html>
