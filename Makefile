@@ -3,7 +3,7 @@ TMPL := template.html
 
 all: index.html
 gh:
-	git add -A; git commit -m "`date `- `uname` $(CMTMSG)"; git push;
+	git add -A; git commit -m "`date `- `uname`"; git push;
 
 index.html: $(YMLS) $(TMPL)
 index.html: index.md index2.md part3.md

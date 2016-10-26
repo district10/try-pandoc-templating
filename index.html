@@ -92,7 +92,16 @@ key 的值是（【我是 key 的值】）。
 
 5. 脚本注入
 
-<script> document.write("A JavaScript code."); </script>
+这部分会导致到处的 json 文本出 bug。所以请，不要使用它。
+在 README 中提供了代码。
+
+6. 把配置导出成 json 格式，可以提供给 js
+
+【
+var info = {"picture":"<p>data:image/png;base64,R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLCAgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=</p>","key":"【我是 key 的值】","files":["file1.txt","file2.txt","file3.txt"],"code":"<div class=\"sourceCode\"><pre class=\"sourceCode c\"><code class=\"sourceCode c\"><span class=\"co\">// 这部分 markdown 会被提前解析成 html，然后插入。</span>\n<span class=\"ot\">#include &lt;stdio.h&gt;</span>\n\n<span class=\"dt\">int</span> main( <span class=\"dt\">int</span> argc, <span class=\"dt\">char</span> **argv)\n{\n    <span class=\"dt\">int</span> a = atoi( argv[<span class=\"dv\">1</span>] );\n    <span class=\"dt\">int</span> b = atoi( argv[<span class=\"dv\">2</span>] );\n    printf( <span class=\"st\">&quot;a + b = %d + %d = %d</span><span class=\"ch\">\\n</span><span class=\"st\">&quot;</span>, a, b, a+b );\n    <span class=\"kw\">return</span> <span class=\"dv\">0</span>;\n}</code></pre></div>","title":"这是 md 文件里的 title（index2）","parent":{"daughter":[{"name":"jersy","interest":"打豆豆"},{"name":"sheay","interest":"吃豆豆"}],"son":[{"name":"tom","interest":"吃大餐"},{"name":"jack","interest":"睡大觉"},{"name":"NoInterestSon"}]},"part3":"part3 is working.","verbatium":"<p>1 2 3 4 5 a b c d e</p>","title2":"这是 yml 文件里的 title"};
+】
+
+这样你可以把内容用到脚本中：“document.getElementsByTagName("body")[0].innerHTML = info.code;”。
 
 </code>
 最后，markdown 本体里的内容：【【【
@@ -109,5 +118,8 @@ key 的值是（【我是 key 的值】）。
 <li>part4</li>
 </ul>
 】】】
+<script>
+var info = {"picture":"<p>data:image/png;base64,R0lGODlhDAAMAIQAAP//9/X17unp5WZmZgAAAOfn515eXvPz7Y6OjuDg4J+fn5OTk6enp56enmlpaWNjY6Ojo4SEhP/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++f/++SH+Dk1hZGUgd2l0aCBHSU1QACwAAAAADAAMAAAFLCAgjoEwnuNAFOhpEMTRiggcz4BNJHrv/zCFcLiwMWYNG84BwwEeECcgggoBADs=</p>","key":"【我是 key 的值】","files":["file1.txt","file2.txt","file3.txt"],"code":"<div class=\"sourceCode\"><pre class=\"sourceCode c\"><code class=\"sourceCode c\"><span class=\"co\">// 这部分 markdown 会被提前解析成 html，然后插入。</span>\n<span class=\"ot\">#include &lt;stdio.h&gt;</span>\n\n<span class=\"dt\">int</span> main( <span class=\"dt\">int</span> argc, <span class=\"dt\">char</span> **argv)\n{\n    <span class=\"dt\">int</span> a = atoi( argv[<span class=\"dv\">1</span>] );\n    <span class=\"dt\">int</span> b = atoi( argv[<span class=\"dv\">2</span>] );\n    printf( <span class=\"st\">&quot;a + b = %d + %d = %d</span><span class=\"ch\">\\n</span><span class=\"st\">&quot;</span>, a, b, a+b );\n    <span class=\"kw\">return</span> <span class=\"dv\">0</span>;\n}</code></pre></div>","title":"这是 md 文件里的 title（index2）","parent":{"daughter":[{"name":"jersy","interest":"打豆豆"},{"name":"sheay","interest":"吃豆豆"}],"son":[{"name":"tom","interest":"吃大餐"},{"name":"jack","interest":"睡大觉"},{"name":"NoInterestSon"}]},"part3":"part3 is working.","verbatium":"<p>1 2 3 4 5 a b c d e</p>","title2":"这是 yml 文件里的 title"};
+</script>
 </body>
 </html>

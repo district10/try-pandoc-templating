@@ -71,13 +71,23 @@ $endif$
 
 5. 脚本注入
 
-$if(jscode)$
-$jscode$
-$endif$
+这部分会导致到处的 json 文本出 bug。所以请，不要使用它。
+在 README 中提供了代码。
+
+6. 把配置导出成 json 格式，可以提供给 js
+
+【
+$if(meta-json)$var info = $meta-json$;$endif$
+】
+
+这样你可以把内容用到脚本中：“document.getElementsByTagName("body")[0].innerHTML = info.code;”。
 
 </code>
 最后，markdown 本体里的内容：【【【
 $body$
 】】】
+<script>
+$if(meta-json)$var info = $meta-json$;$endif$
+</script>
 </body>
 </html>

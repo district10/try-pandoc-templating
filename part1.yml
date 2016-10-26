@@ -40,8 +40,4 @@ code: |
     }
     ```
 title2: 这是 yml 文件里的 title
-jscode:
-    <script>
-    document.write("A JavaScript code.");
-    </script>
 ---

@@ -60,4 +60,23 @@ Pandoc Template Hacks
     -   yml 高于 md
     -   先出现的高于后出现的
 
+-   脚本注入：
+
+    ```yml
+    jscode:
+        <script>
+        document.write("A JavaScript code.");
+        </script>
+    ```
+
+    ```
+    $if(jscode)$
+    $jscode$
+    $endif$
+    ```
+
+    会引起导出的 json 出 bug。
+
+    Anyway，不要在 yml 中写 html 标签。
+
 把目录下的几个文件看看，大概就知道怎么配置了。
