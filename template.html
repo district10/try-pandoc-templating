@@ -82,6 +82,11 @@ $if(meta-json)$var info = $meta-json$;$endif$
 
 这样你可以把内容用到脚本中：“document.getElementsByTagName("body")[0].innerHTML = info.code;”。
 
+7. 从命令行传入数据
+
+$if(key1)$key1 is "$key1$".$endif$
+$if(key2)$key2 is "$key2$".$endif$
+
 </code>
 最后，markdown 本体里的内容：【【【
 $body$
